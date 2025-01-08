@@ -11,7 +11,7 @@ export default function ClaudeRecipe({ recipe }) {
           height: "15px",
         }}
       >
-        <u>Chef Claude Recommends:</u>
+        <u>Chef-AI Recommends:</u>
       </p>
       <ReactMarkdown children={recipe} />
     </section>
