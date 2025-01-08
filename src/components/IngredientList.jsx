@@ -3,7 +3,11 @@
 
 export default function IngredientList({ ingredients, getRecipe }) {
   let ingredientListItems = ingredients.map((item) => {
-    return <li key={item}>{item}</li>;
+    return (
+      <li className="ingredient-li  " key={item}>
+        {item}
+      </li>
+    );
   });
 
   return (
