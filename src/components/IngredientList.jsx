@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 
-export default function IngredientList({ ingredients, getRecipe, recipeRef }) {
+export default function IngredientList({ ingredients, getRecipe }) {
   let ingredientListItems = ingredients.map((item) => {
     return (
       <li className="ingredient-li  " key={item}>
@@ -14,9 +14,9 @@ export default function IngredientList({ ingredients, getRecipe, recipeRef }) {
     <section>
       <h2>Ingredients on hand :</h2>
       <ul className="ul-list">{ingredientListItems}</ul>
-      {ingredients.length >= 1 && (
+      {ingredients.length >= 3 && (
         <div className="get-recipe-container">
-          <div ref={recipeRef}>
+          <div>
             <h3>Ready for a recipe ?</h3>
             <p>Generate a recipe from your list of ingredients.</p>
           </div>

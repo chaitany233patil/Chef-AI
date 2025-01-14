@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import ClaudeRecipe from "./ClaudeRecipe";
 import IngredientList from "./IngredientList";
 import InputForm from "./InputForm";
@@ -8,13 +8,6 @@ import getRecipeFromMistral from "../../ai";
 export default function Main() {
   const [ingredients, setIngredients] = useState([]);
   const [recipe, setRecipe] = useState("");
-  const recipeSection = useRef(null);
-  console.log(recipeSection);
-  useEffect(() => {
-    if (recipe !== "" && recipeSection.current !== null) {
-      recipeSection.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [recipe]);
 
   let count = parseInt(localStorage.getItem("responseCount")) || 0;
 
@@ -29,7 +22,7 @@ export default function Main() {
   }
 
   async function getRecipe() {
-    if (count <= 5) {
+    if (count <= 1) {
       count++;
       localStorage.setItem("responseCount", count);
       await getRecipeFromMistral(ingredients, (updateRes) => {
@@ -45,11 +38,7 @@ export default function Main() {
       <InputForm handleFormSubmit={handleFormSubmit} />
       <div className="ingredient-list">
         {ingredients.length > 0 && (
-          <IngredientList
-            ingredients={ingredients}
-            getRecipe={getRecipe}
-            recipeRef={recipeSection}
-          />
+          <IngredientList ingredients={ingredients} getRecipe={getRecipe} />
         )}
       </div>
       {recipe && <ClaudeRecipe recipe={recipe} />}
