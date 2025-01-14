@@ -6,11 +6,7 @@ import getRecipeFromMistral from "../../ai";
 // import Alert from "./Alert";
 
 export default function Main() {
-  const [ingredients, setIngredients] = useState([
-    "maggie",
-    "maggie masala",
-    "cheese",
-  ]);
+  const [ingredients, setIngredients] = useState([]);
   const [recipe, setRecipe] = useState("");
   const recipeSection = useRef(null);
   console.log(recipeSection);
