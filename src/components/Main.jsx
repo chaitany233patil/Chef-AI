@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import ClaudeRecipe from "./ClaudeRecipe";
 import IngredientList from "./IngredientList";
 import InputForm from "./InputForm";
 import getRecipeFromMistral from "../../ai";
-// import Alert from "./Alert";
 
 export default function Main() {
   const [ingredients, setIngredients] = useState([]);
   const [recipe, setRecipe] = useState("");
+  const recipeSection = useRef(null);
+
+  useEffect(() => {
+    if (recipe !== "" && recipeSection.current !== null) {
+      recipeSection.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [recipe]);
 
   let count = parseInt(localStorage.getItem("responseCount")) || 0;
 
@@ -41,7 +47,7 @@ export default function Main() {
           <IngredientList ingredients={ingredients} getRecipe={getRecipe} />
         )}
       </div>
-      {recipe && <ClaudeRecipe recipe={recipe} />}
+      {recipe && <ClaudeRecipe recipe={recipe} recipeRef={recipeSection} />}
     </main>
   );
 }

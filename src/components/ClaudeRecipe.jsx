@@ -2,9 +2,13 @@
 /* eslint-disable react/prop-types */
 import ReactMarkdown from "react-markdown";
 
-export default function ClaudeRecipe({ recipe }) {
+export default function ClaudeRecipe({ recipe, recipeRef }) {
   return (
-    <section className="suggested-recipe-container" aria-live="polite">
+    <section
+      className="suggested-recipe-container"
+      aria-live="polite"
+      ref={recipeRef}
+    >
       <p
         style={{
           textAlign: "center",
